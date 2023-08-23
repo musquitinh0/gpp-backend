@@ -28,6 +28,10 @@ def register_phone():
     # Check if phone IMEI is already registered
     if Phone.query.filter_by(imei=imei).first():
         return jsonify({'error': 'IMEI já registrado'}), 400
+    
+    # Check if phone IMEI is already registered
+    if Phone.query.filter_by(number1=number1).first():
+        return jsonify({'error': 'número já registrado'}), 400
 
     # Create new phone for the user
     phone = Phone(imei=imei, number1=number1, number2=number2, user=current_user, model=model)
